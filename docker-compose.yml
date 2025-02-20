@@ -19,7 +19,9 @@ services:
       - ./redis_data:/data
 
   medplum-backend:
-    image: jmasood2394/medplum-backend:v1
+    build:
+      context: ./medplum
+      dockerfile: Dockerfile.server
     container_name: medplum-server
     restart: always
     volumes:
@@ -31,7 +33,9 @@ services:
       - redis
 
   medplum-frontend:
-    image: jmasood2394/medplum-frontend:v1
+    build:
+      context: ./medplum
+      dockerfile: Dockerfile.frontend
     container_name: medplum-web
     restart: always
     expose:
