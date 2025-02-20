@@ -1,0 +1,15 @@
+FROM node:22-alpine AS build
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm ci
+
+RUN npm run build:fast
+
+WORKDIR /app/packages/server
+
+EXPOSE 8103
+
+CMD ["npm", "start"]
