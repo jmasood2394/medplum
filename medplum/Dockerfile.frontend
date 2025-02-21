@@ -1,6 +1,6 @@
 FROM node:22-alpine AS build
 
-RUN apk add --no-cache git curl
+RUN apk add --no-cache git curl openssl
 
 WORKDIR /app
 
@@ -11,6 +11,10 @@ RUN npm ci
 RUN npm run build:fast
 
 WORKDIR /app/packages/app
+
+ENV MEDPLUM_BASE_URL=${MEDPLUM_BASE_URL}
+ENV RECAPTCHA_SITE_KEY=${RECAPTCHA_SITE_KEY}
+ENV MEDPLUM_REGISTER_ENABLED=${MEDPLUM_REGISTER_ENABLED}
 
 EXPOSE 3000
 
