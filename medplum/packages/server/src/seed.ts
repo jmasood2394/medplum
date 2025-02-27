@@ -37,8 +37,8 @@ export async function seedDatabase(): Promise<void> {
 }
 
 async function createSuperAdmin(systemRepo: Repository): Promise<void> {
-  const [firstName, lastName, email] = ['Medplum', 'Admin', 'admin@example.com'];
-  const passwordHash = await bcryptHashPassword('medplum_admin');
+  const [firstName, lastName, email] = ['MDR', 'Admin', 'admin@example.com'];
+  const passwordHash = await bcryptHashPassword('mdr_admin');
   const superAdmin = await systemRepo.createResource<User>({
     resourceType: 'User',
     firstName,

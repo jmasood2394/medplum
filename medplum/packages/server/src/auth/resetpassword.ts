@@ -69,9 +69,9 @@ export async function resetPasswordHandler(req: Request, res: Response): Promise
   if (req.body.sendEmail !== false) {
     await sendEmail(systemRepo, {
       to: user.email,
-      subject: 'Medplum Password Reset',
+      subject: 'Medical Digital Records Password Reset',
       text: [
-        'Someone requested to reset your Medplum password.',
+        'Someone requested to reset your Medical Digital Records password.',
         '',
         'Please click on the following link:',
         '',
@@ -80,7 +80,7 @@ export async function resetPasswordHandler(req: Request, res: Response): Promise
         'If you received this in error, you can safely ignore it.',
         '',
         'Thank you,',
-        'Medplum',
+        'Medical Digital Records',
         '',
       ].join('\n'),
     });

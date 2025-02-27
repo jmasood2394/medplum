@@ -7,11 +7,23 @@ WORKDIR /app
 COPY . .
 
 RUN npm ci
-
 RUN npm run build:fast
+
+# Final Image
+FROM node:22-alpine
+
+RUN apk add --no-cache git curl openssl
+RUN addgroup -S medplum && adduser -S medplum -G medplum
+
+WORKDIR /app
+COPY --from=build /app .
+RUN chown -R medplum:medplum /app
+RUN chmod -R 755 /app
 
 WORKDIR /app/packages/server
 
 EXPOSE 8103
 
-CMD ["npm", "start"]
+USER medplum
+
+CMD ["node", "dist/index.js"]

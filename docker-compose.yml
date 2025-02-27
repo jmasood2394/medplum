@@ -9,7 +9,6 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
 
   redis:
     image: redis:7
@@ -25,8 +24,7 @@ services:
     restart: always
     volumes:
       - ./medplum.config.json:/app/packages/server/medplum.config.json
-    expose:
-      - 8103
+      - ./medplum_binary:/usr/src/medplum/binary
     depends_on:
       - postgres
       - redis
@@ -37,8 +35,6 @@ services:
       dockerfile: Dockerfile.frontend
     container_name: medplum-web
     restart: always
-    expose:
-      - "3000"
     depends_on:
       - medplum-backend
 
@@ -54,7 +50,20 @@ services:
     depends_on:
       - medplum-frontend
       - medplum-backend
+    
+  mailcatcher:
+    image: sj26/mailcatcher
+    container_name: medplum-mailcatcher
+    restart: always
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+    environment:
+      MAILCATCHER_SMTP_PORT: 1025
+      MAILCATCHER_HTTP_PORT: 1080
 
 volumes:
   postgres_data:
+    driver: local
+  medplum_binary:
     driver: local
