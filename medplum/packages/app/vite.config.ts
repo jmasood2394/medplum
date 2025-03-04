@@ -23,8 +23,14 @@ export default defineConfig({
   envPrefix: ['MEDPLUM_', 'GOOGLE_', 'RECAPTCHA_'],
   plugins: [react()],
   server: {
+    host: '0.0.0.0',
     port: 3000,
+    strictPort: true,
   },
+  preview: {
+    allowedHosts: ['test.5a9.com'],
+  },
+  
   publicDir: 'static',
   build: {
     sourcemap: true,
