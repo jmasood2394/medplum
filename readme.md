@@ -6,7 +6,7 @@ Before cloning the repo, ensure the server has the following installed.
 
 - Docker
 - Docker compose
-- Valid SSL certificates (or use the self-signed certificates in the repository)
+- Valid SSL certificates (or use self-signed certificates)
 
 #### Installation of Docker and Docker compose:
 
