@@ -4,9 +4,9 @@ MEDPLUM IMPLEMENTATION FOR MDR
 
 Before cloning the repo, ensure the server has the following installed.
 
-a.	Docker
-b.	Docker compose
-c.	Valid SSL certificates (or use the self-signed certificates in the repository)
+- Docker
+- Docker compose
+- Valid SSL certificates (or use the self-signed certificates in the repository)
 
 #### Installation of Docker and Docker compose:
 
